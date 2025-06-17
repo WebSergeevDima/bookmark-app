@@ -1,38 +1,39 @@
 <script setup lang="ts">
+import Profile from '@/components/Profile.vue'
+import { onMounted, ref } from 'vue'
+import { API_ROUTES } from '@/api.ts'
+import type { IProfile } from '@/interfaces/profile.ts'
+const profile = ref<IProfile | undefined>();
+async function fetchProfile() {
+  const data = await fetch(API_ROUTES.profile);
+  const res = (await data.json()) as IProfile;
+  profile.value = res;
+}
 
+onMounted(() => {
+  fetchProfile()
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-  </header>
+ <div class="app">
+   <nav class="nav">
+     <Profile v-if="profile" :name="profile.name" />
+   </nav>
+   <main>Content</main>
+ </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
+  .app {
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    gap: 200px;
+    min-height: calc(100vh - 140px);
+    max-width: 1450px;
+    margin: 140px auto 0 auto;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .nav {
+    min-width: 200px;
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
