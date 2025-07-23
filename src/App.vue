@@ -1,24 +1,14 @@
 <script setup lang="ts">
 import Profile from '@/components/Profile.vue'
-import { onMounted, ref } from 'vue'
-import { API_ROUTES } from '@/api.ts'
-import type { IProfile } from '@/interfaces/profile.ts'
-const profile = ref<IProfile | undefined>();
-async function fetchProfile() {
-  const data = await fetch(API_ROUTES.profile);
-  const res = (await data.json()) as IProfile;
-  profile.value = res;
-}
+import Categories from '@/components/Categories.vue'
 
-onMounted(() => {
-  fetchProfile()
-})
 </script>
 
 <template>
  <div class="app">
    <nav class="nav">
-     <Profile v-if="profile" :name="profile.name" />
+     <Profile />
+     <Categories />
    </nav>
    <main>Content</main>
  </div>
@@ -35,5 +25,8 @@ onMounted(() => {
 
   .nav {
     min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 </style>
