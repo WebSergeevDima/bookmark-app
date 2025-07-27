@@ -2,6 +2,7 @@
 :root {
   --color-bg: #ffffff;
   --color-fg: #1C1C1C;
+  --color-fg-hover: #313131;
   --color-inactive: #1C1C1C66;
 }
 

@@ -1,7 +1,12 @@
 <template>
   <ul class="list" v-if="storeCategory.categories">
     <li class="listItem" v-for="category of storeCategory.categories" :key="category.id">
-      <a href="#" class="link">{{ category.name }}</a>
+      <a :href="`/${category.alias}`" class="link">{{ category.name }}</a>
+    </li>
+    <li>
+      <ButtonIcon>
+        <IconPlus />
+      </ButtonIcon>
     </li>
   </ul>
 </template>
@@ -9,6 +14,8 @@
 <script lang="ts" setup>
 import { useCategoryStore } from '@/stores/category.store.ts'
 import { onMounted } from 'vue'
+import ButtonIcon from '@/components/ButtonIcon.vue'
+import IconPlus from '@/icons/IconPlus.vue'
 
 const storeCategory = useCategoryStore()
 
