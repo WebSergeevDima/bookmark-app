@@ -8,6 +8,9 @@
         <IconPlus />
       </ButtonIcon>
     </li>
+    <li class="listItem">
+      <a href="" @click="logout" class="link">Выход</a>
+    </li>
   </ul>
 </template>
 
@@ -16,8 +19,17 @@ import { useCategoryStore } from '@/stores/category.store.ts'
 import { onMounted } from 'vue'
 import ButtonIcon from '@/components/ButtonIcon.vue'
 import IconPlus from '@/icons/IconPlus.vue'
+import { useAuthStore } from '@/stores/auth.store.ts'
+import { useRouter } from 'vue-router'
 
 const storeCategory = useCategoryStore()
+const storeAuth = useAuthStore()
+const router = useRouter()
+
+function logout() {
+  storeAuth.clearToken()
+  router.push('/')
+}
 
 onMounted(() => {
   storeCategory.fetchCategories()

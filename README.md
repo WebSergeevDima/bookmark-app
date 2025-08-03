@@ -37,3 +37,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+### Тестовая авторизация
+## Login: a@a.ru
+## Pass: 1
