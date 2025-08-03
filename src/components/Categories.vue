@@ -1,10 +1,10 @@
 <template>
   <ul class="list" v-if="storeCategory.categories">
     <li class="listItem" v-for="category of storeCategory.categories" :key="category.id">
-      <a :href="`/${category.alias}`" class="link">{{ category.name }}</a>
+      <RouterLink :to="`/main/${category.alias}`" active-class="active-link" class="link">{{ category.name }}</RouterLink>
     </li>
     <li>
-      <ButtonIcon>
+      <ButtonIcon @click="storeCategory.createCategory">
         <IconPlus />
       </ButtonIcon>
     </li>
@@ -42,7 +42,7 @@ onMounted(() => {
   text-decoration: none;
 }
 
-.link.active {
+.active-link {
   font-weight: 700;
   font-size: 24px;
   line-height: 100%;
