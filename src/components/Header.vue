@@ -8,7 +8,7 @@
       </ButtonIcon>
     </div>
     <div class="header-setting">
-      <ButtonIcon>
+      <ButtonIcon @click="handleRemoveCategory">
         <IconDelete />
       </ButtonIcon>
       <ButtonIcon @click="handleEdit">
@@ -27,7 +27,9 @@ import IconCheck from '@/icons/IconCheck.vue'
 import IconPen from '@/icons/IconPen.vue'
 import type { Category } from '@/interfaces/category.ts'
 import { useCategoryStore } from '@/stores/category.store.ts'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const storeCategory = useCategoryStore()
 
 const {category} = defineProps<{category: Category}>()
@@ -40,12 +42,20 @@ function handleEdit() {
 }
 
 function handleUpdateTitle() {
-  storeCategory.updateBookmarks(category.id,{
+  storeCategory.updateCategory(category.id,{
     name: title.value,
     alias: category.alias,
   })
 
   isEdit.value = false
+}
+
+function handleRemoveCategory() {
+  storeCategory.removeCategory(category.id)
+
+  router.push({
+    name: 'main'
+  })
 }
 </script>
 

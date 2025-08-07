@@ -29,10 +29,13 @@ export const useCategoryStore = defineStore('category', () => {
     return
   }
 
-  async function updateBookmarks(id: number, params: PutCategoryParams) {
-    console.log('params: ', params)
+  async function updateCategory(id: number, params: PutCategoryParams) {
     await client().put<Category>(API_ROUTES.categories + '/' + id, params)
+    fetchCategories()
+  }
 
+  async function removeCategory(id: number) {
+    await client().delete<Category>(API_ROUTES.categories + '/' + id)
     fetchCategories()
   }
 
@@ -42,6 +45,7 @@ export const useCategoryStore = defineStore('category', () => {
     fetchCategories,
     createCategory,
     getCategoryByAlias,
-    updateBookmarks,
+    updateCategory,
+    removeCategory,
   }
 })
