@@ -6,3 +6,8 @@ export interface Bookmark {
   image: string;
   created_at: string;
 }
+
+export interface PutCategoryParams {
+  "name": string,
+  "alias": string
+}

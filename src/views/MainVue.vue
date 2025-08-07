@@ -10,7 +10,7 @@ import Categories from '@/components/Categories.vue'
       <Profile />
       <Categories />
     </nav>
-    <main>
+    <main class="main">
       <RouterView />
     </main>
   </div>
@@ -30,5 +30,9 @@ import Categories from '@/components/Categories.vue'
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.main {
+  width: 100%;
 }
 </style>
